@@ -10,6 +10,14 @@
         <h1 class="title">www.mojamoja.cloud</h1>
         <h2 class="subtitle">Something will happen in 2021...</h2>
       </div>
+      <b-row class="my-4">
+        <b-col>
+          <Twitter />
+        </b-col>
+        <b-col>
+          <Github />
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
