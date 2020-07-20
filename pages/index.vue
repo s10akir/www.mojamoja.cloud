@@ -1,10 +1,14 @@
 <template>
-  <div id="index" class="d-flex align-items-center justify-content-center" :style="{height: `${height}px`}">
+  <div
+    id="index"
+    class="d-flex align-items-center justify-content-center"
+    :style="{height: `${height}px`}"
+  >
     <div class="text-center">
       <img src="~static/images/avatar.gif" class="avatar rounded-circle" />
       <div class="my-4">
-      <h1 class="title">www.mojamoja.cloud</h1>
-      <h2 class="subtitle">Something will happen in 2021...</h2>
+        <h1 class="title">www.mojamoja.cloud</h1>
+        <h2 class="subtitle">Something will happen in 2021...</h2>
       </div>
     </div>
   </div>
