@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
+    "gcp-build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "export": "nuxt-ts export",
     "serve": "nuxt-ts serve",

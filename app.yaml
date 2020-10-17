@@ -1,0 +1,4 @@
+# application config for Google App Engine
+runtime: nodejs12
+manual_scaling:
+  instances: 1
