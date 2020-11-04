@@ -29,13 +29,14 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/vue-fontawesome": "^0.1.10",
     "@nuxt/typescript-runtime": "^0.4.10",
+    "axios": "^0.21.0",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "mysql": "^2.14.1",
     "nuxt": "^2.13.0",
     "nuxt-fontawesome": "^0.4.0",
-    "typeorm": "0.2.29",
-    "reflect-metadata": "^0.1.10"
+    "reflect-metadata": "^0.1.10",
+    "typeorm": "0.2.29"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^1.0.3",
@@ -44,6 +45,7 @@
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/pwa": "^3.2.2",
     "@nuxtjs/stylelint-module": "^4.0.0",
+    "@types/node": "^8.0.29",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -57,8 +59,6 @@
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-standard": "^20.0.0",
-    "ts-node": "3.3.0",
-    "@types/node": "^8.0.29"
+    "ts-node": "3.3.0"
   }
 }
-
