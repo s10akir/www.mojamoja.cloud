@@ -19,7 +19,7 @@ router.get('/latest', async (_, res) => {
   })
 })
 
-router.get('/fetch', async (_, res) => {
+router.get('/fetch', (_, res) => {
   axios
     .get('https://api.nature.global/1/devices', {
       headers: {
@@ -41,9 +41,10 @@ router.get('/fetch', async (_, res) => {
         res.status(status)
         res.send(status)
       }
-    }).catch(err => {
+    })
+    .catch((err) => {
       res.status(503)
-      res.json({err})
+      res.json({ err })
     })
 })
 
