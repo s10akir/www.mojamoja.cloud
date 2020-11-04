@@ -10,11 +10,8 @@ import router from './routes'
 //        普通に最悪
 try {
   const connection = getConnection()
-
-  ;(async () => {
-    // promiseなので同期を取らないと次のコネクションプール初期化に失敗する
-    await connection.close().then(() => createConnection())
-  })()
+  // promiseなので同期を取らないと次のコネクションプール初期化に失敗する
+  connection.close().then(() => createConnection())
 } catch {
   // catchにあるがこれが期待する正常時動作
   // （アプリケーション起動時はコネクションプールがないことを期待する）
