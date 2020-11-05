@@ -7,6 +7,7 @@ import { Router } from 'express'
 import { RemoLog } from '../../entity/RemoLog'
 
 const NATURE_TOKEN = process.env.NATURE_TOKEN || ''
+const ENVIRONMENT_TOKEN = process.env.ENVIRONMENT_TOKEN
 const router = Router()
 
 router.use(passport.initialize())
@@ -14,7 +15,7 @@ router.use(passport.initialize())
 passport.use(
   new BearerStrategy((token, done) => {
     // FIXME: トークンの検証
-    if (token === 'TRUE') {
+    if (token === ENVIRONMENT_TOKEN) {
       return done(null, true)
     } else {
       return done(null, false)
