@@ -1,12 +1,26 @@
 import axios from 'axios'
 
 import passport from 'passport'
+import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { Router } from 'express'
 
 import { RemoLog } from '../../entity/RemoLog'
 
 const NATURE_TOKEN = process.env.NATURE_TOKEN || ''
 const router = Router()
+
+router.use(passport.initialize())
+
+passport.use(
+  new BearerStrategy((token, done) => {
+    // FIXME: トークンの検証
+    if (token === 'TRUE') {
+      return done(null, true)
+    } else {
+      return done(null, false)
+    }
+  })
+)
 
 router.get('/latest', async (_, res) => {
   const remoLog = await RemoLog.findOne({ order: { createdAt: 'DESC' } })

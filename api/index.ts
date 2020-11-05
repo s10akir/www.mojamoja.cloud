@@ -1,8 +1,6 @@
 import 'reflect-metadata'
 
 import express from 'express'
-import passport from 'passport'
-import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { createConnection, getConnection } from 'typeorm'
 
 import router from './routes'
@@ -21,18 +19,6 @@ try {
 }
 
 const app = express()
-app.use(passport.initialize())
-
-passport.use(
-  new BearerStrategy((token, done) => {
-    // FIXME: トークンの検証
-    if (token === 'TRUE') {
-      return done(null, true)
-    } else {
-      return done(null, false)
-    }
-  })
-)
 
 app.use(router)
 
