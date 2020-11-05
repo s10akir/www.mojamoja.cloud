@@ -39,7 +39,7 @@ router.get('/fetch', (_, res) => {
         remoLog.save()
 
         res.status(status)
-        res.send(status)
+        res.sendStatus(status)
       }
     })
     .catch((err) => {
