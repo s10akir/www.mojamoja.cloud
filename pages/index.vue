@@ -2,7 +2,7 @@
   <div
     id="index"
     class="d-flex align-items-center justify-content-center"
-    :style="{height: `${height}px`}"
+    :style="{ height: `${height}px` }"
   >
     <div class="text-center">
       <img src="~static/images/avatar.gif" class="avatar rounded-circle" />
@@ -10,6 +10,7 @@
         <h1 class="title">www.mojamoja.cloud</h1>
         <h2 class="subtitle">Something will happen in 2021...</h2>
       </div>
+      {{ remoLog }}
       <b-row class="my-4">
         <b-col>
           <Twitter />
@@ -26,17 +27,24 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'index',
+  name: 'Index',
   data() {
     return {
       height: 0,
+      remoLog: {
+        temperature: 0.0,
+        humidity: 0.0,
+        brightness: 0.0,
+        motion: false,
+      },
     }
   },
-  created() {
-    if (process.client) {
-      window.addEventListener('resize', this.handleResize)
-      this.handleResize()
-    }
+  mounted() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+
+    window.setInterval(this.fetchRemoLog, 1000 * 60)
+    this.fetchRemoLog()
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -44,6 +52,14 @@ export default Vue.extend({
   methods: {
     handleResize() {
       this.height = window.innerHeight
+    },
+    fetchRemoLog() {
+      this.$axios.$get('/api/v1/environment/latest').then((res) => {
+        this.remoLog.temperature = res.temperature
+        this.remoLog.humidity = res.humidity
+        this.remoLog.brightness = res.brightness
+        this.remoLog.motion = res.motion
+      })
     },
   },
 })
