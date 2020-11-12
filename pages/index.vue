@@ -6,11 +6,28 @@
   >
     <div class="text-center">
       <img src="~static/images/avatar.gif" class="avatar rounded-circle" />
+
       <div class="my-4">
         <h1 class="title">www.mojamoja.cloud</h1>
         <h2 class="subtitle">Something will happen in 2021...</h2>
       </div>
-      <a href="/api/v1/environment/latest">{{ remoLog }}</a>
+
+      <b-row class="my-4">
+        <b-col>
+          <Temperature :value="remoLog.temperature" />
+        </b-col>
+        <b-col>
+          <Humidity :value="remoLog.humidity" />
+        </b-col>
+        <b-col>
+          <Brightness :value="remoLog.brightness" />
+        </b-col>
+        <b-col>
+          <Motion :value="remoLog.motion" />
+        </b-col>
+      </b-row>
+
+      <!-- SNS系リンク一時削除 移動先は未定
       <b-row class="my-4">
         <b-col>
           <Twitter />
@@ -19,6 +36,7 @@
           <Github />
         </b-col>
       </b-row>
+      -->
     </div>
   </div>
 </template>
