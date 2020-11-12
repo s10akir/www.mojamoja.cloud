@@ -10,7 +10,7 @@
         <h1 class="title">www.mojamoja.cloud</h1>
         <h2 class="subtitle">Something will happen in 2021...</h2>
       </div>
-      <nuxt-link to="#">{{ remoLog }}</nuxt-link>
+      <a href="/api/v1/environment/latest">{{ remoLog }}</a>
       <b-row class="my-4">
         <b-col>
           <Twitter />
