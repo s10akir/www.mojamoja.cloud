@@ -25,9 +25,24 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { Context } from '@nuxt/types'
 
 export default Vue.extend({
   name: 'Index',
+  async asyncData(context: Context) {
+    const { $axios } = context
+    const res = await $axios.get('/api/v1/environment/latest')
+
+    const { temperature, humidity, brightness, motion } = res.data
+    return {
+      remoLog: {
+        temperature,
+        humidity,
+        brightness,
+        motion,
+      },
+    }
+  },
   data() {
     return {
       height: 0,
@@ -44,7 +59,6 @@ export default Vue.extend({
     this.handleResize()
 
     window.setInterval(this.fetchRemoLog, 1000 * 60)
-    this.fetchRemoLog()
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
