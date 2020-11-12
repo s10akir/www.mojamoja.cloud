@@ -10,7 +10,7 @@
         <h1 class="title">www.mojamoja.cloud</h1>
         <h2 class="subtitle">Something will happen in 2021...</h2>
       </div>
-      {{ remoLog }}
+      <nuxt-link to="#">{{ remoLog }}</nuxt-link>
       <b-row class="my-4">
         <b-col>
           <Twitter />
@@ -86,5 +86,11 @@ export default Vue.extend({
 .subtitle {
   font-size: 2rem;
   font-weight: 200;
+}
+
+a,
+a:link,
+a:visited {
+  color: black;
 }
 </style>
