@@ -89,12 +89,15 @@ export default Vue.extend({
       this.height = window.innerHeight
     },
     fetchRemoLog() {
-      this.$axios.$get('/api/v1/environment/latest').then((res) => {
-        this.remoLog.temperature = res.temperature
-        this.remoLog.humidity = res.humidity
-        this.remoLog.brightness = res.brightness
-        this.remoLog.motion = res.motion
-      })
+      // TODO: axios proxy書く
+      this.$axios
+        .$get('https://www.mojamoja.cloud/api/v1/environment/latest')
+        .then((res) => {
+          this.remoLog.temperature = res.temperature
+          this.remoLog.humidity = res.humidity
+          this.remoLog.brightness = res.brightness
+          this.remoLog.motion = res.motion
+        })
     },
   },
 })
