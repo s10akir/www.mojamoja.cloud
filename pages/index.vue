@@ -2,14 +2,32 @@
   <div
     id="index"
     class="d-flex align-items-center justify-content-center"
-    :style="{height: `${height}px`}"
+    :style="{ height: `${height}px` }"
   >
     <div class="text-center">
       <img src="~static/images/avatar.gif" class="avatar rounded-circle" />
+
       <div class="my-4">
         <h1 class="title">www.mojamoja.cloud</h1>
-        <h2 class="subtitle">Something will happen in 2021...</h2>
+        <h2 class="subtitle">Something will happen in {{ nextYear }}...</h2>
       </div>
+
+      <b-row class="my-4">
+        <b-col>
+          <Temperature :value="remoLog.temperature" />
+        </b-col>
+        <b-col>
+          <Humidity :value="remoLog.humidity" />
+        </b-col>
+        <b-col>
+          <Brightness :value="remoLog.brightness" />
+        </b-col>
+        <b-col>
+          <Motion :value="remoLog.motion" />
+        </b-col>
+      </b-row>
+
+      <!-- SNS系リンク一時削除 移動先は未定
       <b-row class="my-4">
         <b-col>
           <Twitter />
@@ -18,25 +36,51 @@
           <Github />
         </b-col>
       </b-row>
+      -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { Context } from '@nuxt/types'
 
 export default Vue.extend({
-  name: 'index',
+  name: 'Index',
+  async asyncData(context: Context) {
+    const { $axios } = context
+    // TODO: axios proxy書く
+    const res = await $axios.get(
+      'https://www.mojamoja.cloud/api/v1/environment/latest'
+    )
+
+    const { temperature, humidity, brightness, motion } = res.data
+    return {
+      remoLog: {
+        temperature,
+        humidity,
+        brightness,
+        motion,
+      },
+      nextYear: new Date().getFullYear() + 1,
+    }
+  },
   data() {
     return {
       height: 0,
+      remoLog: {
+        temperature: 0.0,
+        humidity: 0.0,
+        brightness: 0.0,
+        motion: false,
+      },
     }
   },
-  created() {
-    if (process.client) {
-      window.addEventListener('resize', this.handleResize)
-      this.handleResize()
-    }
+  mounted() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+
+    window.setInterval(this.fetchRemoLog, 1000 * 60)
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -44,6 +88,17 @@ export default Vue.extend({
   methods: {
     handleResize() {
       this.height = window.innerHeight
+    },
+    fetchRemoLog() {
+      // TODO: axios proxy書く
+      this.$axios
+        .$get('https://www.mojamoja.cloud/api/v1/environment/latest')
+        .then((res) => {
+          this.remoLog.temperature = res.temperature
+          this.remoLog.humidity = res.humidity
+          this.remoLog.brightness = res.brightness
+          this.remoLog.motion = res.motion
+        })
     },
   },
 })
@@ -70,5 +125,11 @@ export default Vue.extend({
 .subtitle {
   font-size: 2rem;
   font-weight: 200;
+}
+
+a,
+a:link,
+a:visited {
+  color: black;
 }
 </style>
