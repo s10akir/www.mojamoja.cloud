@@ -9,7 +9,7 @@
 
       <div class="my-4">
         <h1 class="title">www.mojamoja.cloud</h1>
-        <h2 class="subtitle">Something will happen in 2021...</h2>
+        <h2 class="subtitle">Something will happen in {{ nextYear }}...</h2>
       </div>
 
       <b-row class="my-4">
@@ -62,6 +62,7 @@ export default Vue.extend({
         brightness,
         motion,
       },
+      nextYear: new Date().getFullYear() + 1,
     }
   },
   data() {
