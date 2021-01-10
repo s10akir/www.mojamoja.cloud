@@ -1,0 +1,6 @@
+node_modules/
+.gcloudignore
+.git
+.github
+.nuxt
+yarn-error.log
