@@ -32,7 +32,7 @@ router.get('/latest', async (_, res) => {
     brightness: remoLog?.brightness ?? null,
     motion: remoLog?.motion ?? null,
     created_at: remoLog?.createdAt ?? null,
-    updated: remoLog?.updatedAt ?? null,
+    updated_at: remoLog?.updatedAt ?? null,
   })
 })
 
