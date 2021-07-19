@@ -50,9 +50,7 @@ export default Vue.extend({
   async asyncData(context: Context) {
     const { $axios } = context
     // TODO: axios proxy書く
-    const res = await $axios.get(
-      'https://www.mojamoja.cloud/api/v1/environment/latest'
-    )
+    const res = await $axios.get('/api/v1/environment/latest')
 
     const { temperature, humidity, brightness, motion } = res.data
     return {
@@ -91,14 +89,12 @@ export default Vue.extend({
     },
     fetchRemoLog() {
       // TODO: axios proxy書く
-      this.$axios
-        .$get('https://www.mojamoja.cloud/api/v1/environment/latest')
-        .then((res) => {
-          this.remoLog.temperature = res.temperature
-          this.remoLog.humidity = res.humidity
-          this.remoLog.brightness = res.brightness
-          this.remoLog.motion = res.motion
-        })
+      this.$axios.$get('/api/v1/environment/latest').then((res) => {
+        this.remoLog.temperature = res.temperature
+        this.remoLog.humidity = res.humidity
+        this.remoLog.brightness = res.brightness
+        this.remoLog.motion = res.motion
+      })
     },
   },
 })

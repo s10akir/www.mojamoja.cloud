@@ -51,6 +51,17 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
   ],
+  axios: {
+    proxy: true,
+  },
+  proxy: {
+    '/api/': {
+      target:
+        process.env.NODE_ENV === 'production'
+          ? 'https://www.mojamoja.cloud/api/'
+          : 'http://localhost:3000/api/',
+    },
+  },
   /*
    ** Nuxt.js modules
    */
