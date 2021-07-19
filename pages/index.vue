@@ -1,11 +1,16 @@
 <template>
   <div
     id="index"
-    class="d-flex align-items-center justify-content-center"
+    class="d-flex align-items-center justify-content-center transition"
+    :class="theme"
     :style="{ height: `${height}px` }"
   >
     <div class="text-center">
-      <img src="~static/images/avatar.gif" class="avatar rounded-circle" />
+      <img
+        src="~static/images/avatar.gif"
+        class="avatar rounded-circle transition"
+        @click="invertTheme"
+      />
 
       <div class="my-4">
         <h1 class="display-4"><u>www.mojamoja.cloud</u></h1>
@@ -54,6 +59,7 @@ export default Vue.extend({
 
     const { temperature, humidity, brightness, motion } = res.data
     return {
+      theme: '',
       remoLog: {
         temperature,
         humidity,
@@ -65,6 +71,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      theme: '',
       height: 0,
       remoLog: {
         temperature: 0.0,
@@ -87,6 +94,9 @@ export default Vue.extend({
     handleResize() {
       this.height = window.innerHeight
     },
+    invertTheme() {
+      this.theme = this.theme ? '' : 'dark'
+    },
     fetchRemoLog() {
       // TODO: axios proxy書く
       this.$axios.$get('/api/v1/environment/latest').then((res) => {
@@ -104,6 +114,7 @@ export default Vue.extend({
 #index {
   width: 100vw;
   height: 100vh;
+  background: #fff;
 }
 
 .avatar {
@@ -111,21 +122,15 @@ export default Vue.extend({
   height: 24rem;
 }
 
-.title {
-  font-size: 4rem;
-  font-weight: 100;
-  display: block;
-  border-bottom: solid 0.1rem black;
+.transition {
+  transition: all 0.4s ease-in;
 }
 
-.subtitle {
-  font-size: 2rem;
-  font-weight: 200;
-}
+.dark {
+  filter: invert(1) hue-rotate(180deg);
 
-a,
-a:link,
-a:visited {
-  color: black;
+  img {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 </style>
