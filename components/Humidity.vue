@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="text-center text-primary">
     <div>
       <fa :icon="['fas', 'tint']" class="fa-4x" />
     </div>

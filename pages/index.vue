@@ -8,8 +8,8 @@
       <img src="~static/images/avatar.gif" class="avatar rounded-circle" />
 
       <div class="my-4">
-        <h1 class="title">www.mojamoja.cloud</h1>
-        <h2 class="subtitle">Something will happen in {{ nextYear }}...</h2>
+        <h1 class="display-4"><u>www.mojamoja.cloud</u></h1>
+        <h2>Something will happen in {{ nextYear }}...</h2>
       </div>
 
       <b-row class="my-4">
